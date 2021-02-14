@@ -49,7 +49,7 @@ contract DigitalArt is ERC721 {
     _symbol = symbol;
   }
 
-  function createTokenAndSellArt(string memory _title, string memory _descriptio, string memory _date,
+  function createTokenAndSellArt(string memory _title, string memory _description, string memory _date,
     string memory _authorName, uint256 _price, string memory _image) public returns (uint256) {
 
     require(bytes(_title).length > 0, 'The title cannot be empty');
@@ -77,7 +77,7 @@ contract DigitalArt is ERC721 {
     arts.push(_art);
     _mint(msg.sender, newItemId);
     pendingArtCount++;
-    emit LogArtSold(_tokenId,_title,  _authorName,_price, _author,_current_owner,msg.sender);
+    emit LogArtTokenCreation(newItemId, _title, _date, _authorName, _price, msg.sender, msg.sender);
     return newItemId;
 
   }
