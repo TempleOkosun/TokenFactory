@@ -9,10 +9,7 @@ contract TokenFactory {
 
   event TokenCreated(uint date, string name, string symbol, address childAddress);
 
-  function createChild(
-    string calldata name,
-    string calldata symbol
-  ) external returns (DigitalArt artAddress){
+  function createChild(string calldata name, string calldata symbol) external returns (DigitalArt artAddress){
     DigitalArt newArts = new DigitalArt(name, symbol);
     tokenAddress.push(address(newArts));
     emit TokenCreated(block.timestamp, name, symbol, address(newArts));
@@ -63,7 +60,7 @@ contract DigitalArt is ERC721 {
     uint status;
   }
 
-  constructor (string memory name, string memory symbol) ERC721(_name, _symbol) public{
+  constructor (string name, string symbol) ERC721(_name, _symbol) public{
     _name = name;
     _symbol = symbol;
   }
