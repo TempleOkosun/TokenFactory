@@ -4,6 +4,25 @@ pragma solidity >=0.4.22 <0.8.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+contract TokenFactory {
+  address[] public tokenAddress;
+
+  event TokenCreated(uint date, string name, string symbol, address childAddress);
+
+  function createChild(
+    string calldata name,
+    string calldata symbol
+  ) external returns (DigitalArt artAddress){
+    DigitalArt newArts = new DigitalArt(name, symbol);
+    tokenAddress.push(address(newArts));
+    emit TokenCreated(block.timestamp, name, symbol, address(newArts));
+    return newArts;
+
+}
+
+  }
+
+
 
 contract DigitalArt is ERC721 {
 
@@ -81,6 +100,9 @@ contract DigitalArt is ERC721 {
     return newItemId;
 
   }
+
+
+
 
 
 }
